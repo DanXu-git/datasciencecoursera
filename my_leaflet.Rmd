@@ -1,0 +1,21 @@
+---
+title: "my_leaflet"
+author: "DX"
+date: "2017/3/17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+## My daytime appearing points
+
+```{r lf}
+library(leaflet)
+sign_sites <- data.frame(lat = runif(100, min=22.588, max=22.589), lng=runif(100, min=114.270, max=114.271))
+h_sites <- data.frame( lat = runif(50, min=22.60, max=22.61), lng=runif(50, min=114.259, max=114.261))
+sign_sites %>% leaflet() %>%
+    addTiles() %>%
+    addMarkers(clusterOptions = markerClusterOptions(), popup='working sign') %>% addCircleMarkers(data=h_sites, popup='haunted places')
+```
